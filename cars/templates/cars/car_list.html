@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Car Listings</h1>
+
+<!-- Filter by Brand -->
+<div>
+    <h3>Filter by Brand</h3>
+    <ul>
+        <li><a href="?">All Brands</a></li>
+        <li><a href="?brand=Toyota">Toyota</a></li>
+        <li><a href="?brand=Tesla">Tesla</a></li>
+        <li><a href="?brand=Honda">Honda</a></li>
+        <li><a href="?brand=BMW">BMW</a></li>
+    </ul>
+</div>
+
+<!-- Car Listings -->
+<div>
+    {% for car in cars %}
+        <div>
+            <h3>{{ car.name }} ({{ car.brand.name }})</h3>
+            <p>Price: ${{ car.price }}</p>
+            <img src="{{ car.image.url }}" alt="{{ car.name }}" style="width: 200px;">
+            <a href="{% url 'car_detail' car.pk %}">View Details</a>
+        </div>
+    {% empty %}
+        <p>No cars available.</p>
+    {% endfor %}
+</div>
+{% endblock %}
