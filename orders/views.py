@@ -6,9 +6,6 @@ from cars.models import Car
 
 @login_required
 def place_order(request, car_id):
-    """
-    Place an order for a car.
-    """
     car = Car.objects.get(pk=car_id)
     if car.quantity > 0:
         car.quantity -= 1
@@ -21,8 +18,5 @@ def place_order(request, car_id):
 
 @login_required
 def order_history(request):
-    """
-    Display all orders for the logged-in user.
-    """
     orders = Order.objects.filter(user=request.user)
     return render(request, 'orders/order_history.html', {'orders': orders})

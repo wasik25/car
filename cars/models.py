@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Car(models.Model):
     name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='cars/', blank=True, null=True)
+    image = models.ImageField(upload_to='cars/')
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
